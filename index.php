@@ -1,3 +1,19 @@
+<?php
+session_start();
+require 'functions.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password_length']) && $_POST['password_length'] !== '') {
+	$password_length = (int) $_POST['password_length'];
+	$password = generate_password($password_length);
+
+	if ($password !== '') {
+		$_SESSION['password'] = $password;
+		header('Location: ./password.php');
+		exit;
+	}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,19 +24,10 @@
 </head>
 
 <body>
-	<form action="">
-		<input type="number" name="password_length" id="password_length" placeholder="Password Length">
+	<form method="post" action="">
+		<input type="number" name="password_length" id="password_length" placeholder="Password Length" min="1">
 		<input type="submit" value="Generate Password">
 	</form>
-
-	<?php
-	require 'functions.php';
-	if (isset($_GET['password_length']) && !empty($_GET['password_length'])) {
-		$password_length = $_GET['password_length'];
-		$password = generate_password($password_length);
-		echo "<p>Your generated password is: <strong>$password</strong></p>";
-	}
-	?>
 </body>
 
 </html>
