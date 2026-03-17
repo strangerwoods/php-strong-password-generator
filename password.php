@@ -10,6 +10,7 @@
 	session_start();
 	if (isset($_SESSION['password'])) {
 		echo "<h1>Your Generated Password: " . $_SESSION['password'] . "</h1>";
+		unset($_SESSION['password']);
 	} else {
 		echo "<h1>No password generated yet.</h1>";
 	}

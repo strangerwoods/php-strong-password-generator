@@ -24,7 +24,7 @@ if (isset($_GET['password_length']) && $_GET['password_length'] !== '') {
 </head>
 
 <body>
-	<form method="post" action="">
+	<form action="">
 		<input type="number" name="password_length" id="password_length" placeholder="Password Length" min="1">
 		<input type="submit" value="Generate Password">
 	</form>
