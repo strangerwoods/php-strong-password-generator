@@ -1,9 +1,9 @@
 <?php
 session_start();
-require 'functions.php';
+require_once './functions.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password_length']) && $_POST['password_length'] !== '') {
-	$password_length = (int) $_POST['password_length'];
+if (isset($_GET['password_length']) && $_GET['password_length'] !== '') {
+	$password_length = (int) $_GET['password_length'];
 	$password = generate_password($password_length);
 
 	if ($password !== '') {
